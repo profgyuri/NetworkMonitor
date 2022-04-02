@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NetworkMonitor.WPF"
         xmlns:vm="clr-namespace:NetworkMonitor.Lib.ViewModels;assembly=NetworkMonitor.Lib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="160" Width="220">
+        Title="MainWindow" Height="190" Width="220">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>

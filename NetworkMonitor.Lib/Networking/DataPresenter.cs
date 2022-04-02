@@ -1,4 +1,6 @@
-﻿namespace NetworkMonitor.Lib.Networking;
+﻿using System.Globalization;
+
+namespace NetworkMonitor.Lib.Networking;
 
 internal class DataPresenter
 {
@@ -9,7 +11,7 @@ internal class DataPresenter
 
     public DataPresenter()
     {
-        _measurements = new();
+        _measurements = new Measurements();
 
         _previousDown = _measurements.GetReceivedBytes();
         _previousUp = _measurements.GetSentBytes();
@@ -17,47 +19,47 @@ internal class DataPresenter
 
     private long GetDownSpeedInBytes()
     {
-        var _currentDown = _measurements.GetReceivedBytes();
+        var currentDown = _measurements.GetReceivedBytes();
 
-        var speed = _currentDown - _previousDown;
-        _previousDown = _currentDown;
+        var speed = currentDown - _previousDown;
+        _previousDown = currentDown;
 
         return speed;
     }
 
     private long GetUpSpeedInBytes()
     {
-        var _currentUp = _measurements.GetSentBytes();
+        var currentUp = _measurements.GetSentBytes();
 
-        var speed = _currentUp - _previousUp;
-        _previousUp = _currentUp;
+        var speed = currentUp - _previousUp;
+        _previousUp = currentUp;
 
         return speed;
     }
 
     internal string GetTotalDownText()
     {
-        return string.Format("{0}/s", FormatFromBytesToString(_previousDown));
+        return $"{FormatFromBytesToString(_previousDown)}";
     }
 
     internal string GetTotalUpText()
     {
-        return string.Format("{0}/s", FormatFromBytesToString(_previousUp));
+        return $"{FormatFromBytesToString(_previousUp)}";
     }
 
     internal string GetDownSpeedText()
     {
         var speed = GetDownSpeedInBytes();
-        return string.Format("{0}/s", FormatFromBytesToString(speed));
+        return $"{FormatFromBytesToString(speed)}/s";
     }
 
     internal string GetUpSpeedText()
     {
         var speed = GetUpSpeedInBytes();
-        return string.Format("{0}/s", FormatFromBytesToString(speed));
+        return $"{FormatFromBytesToString(speed)}/s";
     }
 
-    private static string FormatFromBytesToString(long bytes)
+    private static string FormatFromBytesToString(double bytes)
     {
         System.Text.StringBuilder builder = new();
         var divisions = 0;
@@ -68,7 +70,7 @@ internal class DataPresenter
             divisions++;
         }
 
-        builder.Append(bytes);
+        builder.Append(bytes.ToString("F1", CultureInfo.InvariantCulture));
 
         switch (divisions)
         {
@@ -83,8 +85,6 @@ internal class DataPresenter
                 break;
             case 3:
                 builder.Append(" GB");
-                break;
-            default:
                 break;
         }
 
