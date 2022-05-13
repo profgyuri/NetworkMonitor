@@ -6,61 +6,77 @@
         xmlns:local="clr-namespace:NetworkMonitor.WPF"
         xmlns:vm="clr-namespace:NetworkMonitor.Lib.ViewModels;assembly=NetworkMonitor.Lib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="190" Width="220">
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Foreground="#36CC7C"
+        Background="Transparent"
+        FontSize="16"
+        Title="Network Monitor"
+        Height="170" Width="240">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Height}"/>
+    </WindowChrome.WindowChrome>
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
-    <Grid
-        Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Border
+        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Foreground}"
+        BorderThickness="1"
+        CornerRadius="8"
+        Background="#343642">
+        <Grid
+            Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock
-            Grid.ColumnSpan="2"
-            HorizontalAlignment="Center"
-            FontSize="24"
-            Text="Network Monitor"
-            Margin="0 0 0 20"/>
-        <TextBlock
-            Grid.Row="1"
-            Text="Download Speed:"/>
-        <TextBlock
-            Grid.Row="2"
-            Text="Upload Speed:"/>
-        <TextBlock
-            Grid.Row="3"
-            Text="Total Downloaded:"/>
-        <TextBlock
-            Grid.Row="4"
-            Text="Total Uploaded:"/>
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="1"
-            Text="{Binding DownSpeedText, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock
-            Grid.Row="2"
-            Grid.Column="1"
-            Text="{Binding UpSpeedText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-        <TextBlock
-            Grid.Row="3"
-            Grid.Column="1"
-            Text="{Binding TotalDownText, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock
-            Grid.Row="4"
-            Grid.Column="1"
-            Text="{Binding TotalUpText, UpdateSourceTrigger=PropertyChanged}"/> 
+            <TextBlock
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                FontSize="28"
+                Text="Network Monitor"
+                Margin="0 0 0 20"/>
+            <TextBlock
+                Grid.Row="1"
+                Text="Download Speed:"/>
+            <TextBlock
+                Grid.Row="2"
+                Text="Upload Speed:"/>
+            <TextBlock
+                Grid.Row="3"
+                Text="Total Downloaded:"/>
+            <TextBlock
+                Grid.Row="4"
+                Text="Total Uploaded:"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding DownSpeedText, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding UpSpeedText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding TotalDownText, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="{Binding TotalUpText, UpdateSourceTrigger=PropertyChanged}"/>
 
-    </Grid>
+        </Grid>
+    </Border>
 
 </Window>

@@ -5,7 +5,13 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <AssemblyName>NetworkMonitor</AssemblyName>
+    <ApplicationIcon>tools-and-utensils.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="tools-and-utensils.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NetworkMonitor.Lib\NetworkMonitor.Lib.csproj" />
